@@ -27,9 +27,8 @@ BLDCMotor motor = BLDCMotor(7);
 // Product Code : NANO SFOC S28PR36/S28PR12
 BLDCDriver3PWM driver = BLDCDriver3PWM(PA6, PA7, PB0, PB12);
 
-
-// velocity set point variable,in radians per second
-float target_velocity = 20;
+// velocity set point variable
+float target_velocity = 5;
 // instantiate the commander
 Commander command = Commander(Serial);
 void doTarget(char* cmd) { command.scalar(&target_velocity, cmd); }
@@ -55,14 +54,14 @@ void setup() {
   // default parameters in defaults.h
 
   // velocity PI controller parameters
-  motor.PID_velocity.P = 0.5;
-  motor.PID_velocity.I = 10;
+  motor.PID_velocity.P = 0.2;
+  motor.PID_velocity.I = 5;
   motor.PID_velocity.D = 0;
   // default voltage_power_supply
-  motor.voltage_limit = 4;
+  motor.voltage_limit = 6;
   // jerk control using voltage voltage ramp
   // default value is 300 volts per sec  ~ 0.3V per millisecond
-  motor.PID_velocity.output_ramp = 600;
+  motor.PID_velocity.output_ramp = 500;
   
   // velocity low pass filtering
   // default 5ms - try different values to see what is the best. 
